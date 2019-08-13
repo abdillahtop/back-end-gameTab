@@ -37,18 +37,6 @@ module.exports = {
         })
     },
 
-    databyToken: (token) => {
-        return new Promise((resolve, reject) => {
-            connection.query('SELECT id_user, name, email, created_at, updated_at FROM tb_users WHERE token = ?', token, (err, result) => {
-                if (!err) {
-                    resolve(result)
-                } else {
-                    reject(err)
-                }
-            })
-        })
-    }
-    ,
     updateToken: (email, token) => {
         return new Promise((resolve, reject) => {
             connection.query('UPDATE tb_users SET token = ? WHERE email = ? ', [token, email], (err, result) => {

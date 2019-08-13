@@ -12,18 +12,6 @@ module.exports = {
                 console.log(error)
             })
     },
-    getData: (req, res) => {
-        const token = req.body.token
-        console.log("ini token", token)
-        userModels.databyToken(token)
-            .then((result) => {
-                miscHelper.response(res, result, 200)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-    ,
     register: (req, res) => {
         const salt = miscHelper.generateSalt(18)
         const passwordHash = miscHelper.setPassword(req.body.password, salt)
@@ -54,6 +42,8 @@ module.exports = {
             .then((result) => {
                 const dataUser = result[0]
                 const usePassword = miscHelper.setPassword(password, dataUser.salt).passwordHash
+                console.log("Use password", usePassword)
+                console.log("datauser", dataUser.password)
                 if (usePassword === dataUser.password) {
                     dataUser.token = jwt.sign({
                         userid: dataUser.id_user
@@ -76,7 +66,7 @@ module.exports = {
 
             })
             .catch((error) => {
-                miscHelper.response(res, error, 403, 'Email not Register!')
+                miscHelper.response(res, error, 404)
             })
     },
 

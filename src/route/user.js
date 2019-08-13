@@ -7,7 +7,6 @@ const Auth = require('../helpers/auth')
 Route
     .all('/', Auth.authInfo)
     .get('/', UserController.getUsers)
-    .post('/data', UserController.getData)
     .post('/login', UserController.login)
     .post('/register', UserController.register)
     .post('/logout/:userid', UserController.logout)
