@@ -12,7 +12,18 @@ module.exports = {
                 console.log(error)
             })
     },
-
+    getData: (req, res) => {
+        const token = req.body.token
+        console.log("ini token", token)
+        userModels.databyToken(token)
+            .then((result) => {
+                miscHelper.response(res, result, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    ,
     register: (req, res) => {
         const salt = miscHelper.generateSalt(18)
         const passwordHash = miscHelper.setPassword(req.body.password, salt)

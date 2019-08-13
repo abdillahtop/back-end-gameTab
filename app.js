@@ -5,7 +5,7 @@ const express = require('express')
 const cors = require('cors')
 const xssFilter = require('x-xss-protection')
 const app = express()
-const port = process.env.SERVER_PORT || 5000
+const port = process.env.PORT || 5000
 
 const userRoute = require('./src/route/user')
 const whitelist = process.env.WHITELIST
