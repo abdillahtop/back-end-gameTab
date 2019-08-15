@@ -8,6 +8,9 @@ const app = express()
 const port = process.env.SERVER_PORT || 5000
 
 const userRoute = require('./src/route/user')
+const buttonRoute = require('./src/route/button')
+const patternRoute = require('./src/route/pattern')
+const scoreRoute = require('./src/route/score')
 const whitelist = process.env.WHITELIST
 
 const corsOptions = (req, callback) => {
@@ -27,6 +30,7 @@ const corsOptions = (req, callback) => {
 app.use(cors())
 app.options('*', cors(corsOptions))
 app.use(xssFilter())
+app.use('/uploads', express.static('uploads'));
 
 app.listen(port, () => {
     console.log(`\n App listening on port ${port} \n`)
@@ -38,3 +42,6 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use('/', userRoute)
+app.use('/button', buttonRoute)
+app.use('/pattern', patternRoute)
+app.use('/score', scoreRoute)
