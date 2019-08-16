@@ -3,7 +3,7 @@ const connection = require('../configs/db')
 module.exports = {
     getAllScore: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT a.name, a.updated_at, a.id_user, score FROM tb_users a JOIN tb_score b ON a.id_user = b.id_user ORDER BY score DESC LIMIT 5', (err, result) => {
+            connection.query('SELECT a.name, a.updated_at, a.id_user, score FROM tb_users a JOIN tb_score b ON a.id_user = b.id_user ORDER BY score DESC LIMIT 13', (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
