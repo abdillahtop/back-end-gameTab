@@ -18,6 +18,7 @@ module.exports = {
             connection.query('INSERT INTO tb_users SET ?', data, (err, result) => {
                 if (!err) {
                     resolve(result)
+                    connection.query('INSERT INTO tb_score SET id_user = ?, score = 0', [data.id_user])
                 } else {
                     reject(err)
                 }
