@@ -8,7 +8,7 @@ const app = express()
 const port = process.env.PORT || 5000
 
 const userRoute = require('./src/route/user')
-const buttonRoute = require('./src/route/button')
+const soundRoute = require('./src/route/sound')
 const patternRoute = require('./src/route/pattern')
 const scoreRoute = require('./src/route/score')
 const whitelist = process.env.WHITELIST
@@ -42,6 +42,6 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use('/', userRoute)
-app.use('/button', buttonRoute)
+app.use('/music', soundRoute)
 app.use('/pattern', patternRoute)
 app.use('/score', scoreRoute)

@@ -1,10 +1,10 @@
-const buttonModels = require('../models/button')
+const soundModels = require('../models/sound')
 const miscHelper = require('../helpers/helpers')
 const cloudinary = require('cloudinary').v2
 
 module.exports = {
-    getButton: (req, res) => {
-        buttonModels.getButton()
+    getSound: (req, res) => {
+        soundModels.getSound()
             .then((result) => {
                 miscHelper.response(res, result, 200)
             })
@@ -12,9 +12,9 @@ module.exports = {
                 console.log(error)
             })
     },
-    getButtonbyId: (req, res) => {
+    getSoundbyId: (req, res) => {
         const buttonid = req.params.buttonid
-        buttonModels.getButtonbyId(buttonid)
+        soundModels.getSoundbyId(buttonid)
             .then((result) => {
                 miscHelper.response(res, result, 200)
             })
@@ -22,7 +22,7 @@ module.exports = {
                 console.log(error)
             })
     },
-    postButton: async (req, res) => {
+    postSound: async (req, res) => {
         let path = req.file.path
         let filename = req.file.filename.replace(/\s/g, '')
         let getUrl = async () => {
@@ -55,30 +55,16 @@ module.exports = {
             no_button: req.body.noButton
         }
 
-        buttonModels.postButton(data)
+        soundModels.postSound(data)
             .then((result) => {
                 miscHelper.response(res, result, 200)
             }).catch((error) => {
                 console.log(error);
             })
     },
-    // updateBUtton: (req, res) => {
-    //     const buttonid = req.params.buttonid
-    //     const data = {
-    //         music: req.file.path,
-    //         name: req.body.name
-    //     }
-    //     buttonModels.updateButton(data, buttonid)
-    //         .then((result) => {
-    //             miscHelper.response(res, result, 200)
-    //         })
-    //         .catch((error) => {
-
-    //         })
-    // },
-    delButton: (req, res) => {
+    delSound: (req, res) => {
         const buttonid = req.params.buttonid
-        buttonModels.delButton(buttonid)
+        soundModels.delSsound(buttonid)
             .then((result) => {
                 miscHelper.response(res, result, 200)
             })

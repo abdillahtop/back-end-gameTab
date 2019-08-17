@@ -14,8 +14,21 @@ module.exports = {
     getScore: (req, res) => {
         const userid = req.params.userid
         scoreModels.getScore(userid)
-            .then((result) => {
-                miscHelper.response(res, result, 200)
+            .then((resultScore) => {
+                const result = resultScore
+                scoreModels.getAllScore()
+                    .then((results) => {
+                        let rank = results.map((item, index) => {
+                            if (parseInt(item.id_user) === parseInt(userid)) {
+                                return parseInt(index + 1)
+                            }
+                        })
+                        let ranking = rank.find((item) => {
+                            return item > 0
+                        })
+                        console.log("ranking:", ranking)
+                        miscHelper.response(res, result, 200, null, ranking)
+                    })
             })
             .catch((error) => {
                 console.log(error)

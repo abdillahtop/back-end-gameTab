@@ -1,7 +1,7 @@
 const connection = require('../configs/db')
 
 module.exports = {
-    getButton: () => {
+    getSound: () => {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM tb_button', (err, result) => {
                 if (!err) {
@@ -12,7 +12,7 @@ module.exports = {
             })
         })
     },
-    getButtonbyId: (buttonid) => {
+    getSoundbyId: (buttonid) => {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM tb_button WHERE id_button = ?', buttonid, (err, result) => {
                 if (!err) {
@@ -23,7 +23,7 @@ module.exports = {
             })
         })
     },
-    postButton: (data) => {
+    postSound: (data) => {
         return new Promise((resolve, reject) => {
             connection.query('INSERT INTO tb_button SET ?', data, (err, result) => {
                 if (!err) {
@@ -35,7 +35,7 @@ module.exports = {
         })
     },
 
-    delButton: (buttonid) => {
+    delSsound: (buttonid) => {
         return new Promise((resolve, reject) => {
             connection.query('DELETE tb_button WHERE id_button = ?', buttonid, (err, result) => {
                 if (!err) {

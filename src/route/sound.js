@@ -1,7 +1,7 @@
 const express = require('express')
 const Route = express.Router()
 
-const ButtonController = require('../controllers/button')
+const soundController = require('../controllers/sound')
 const Auth = require('../helpers/auth')
 const multer = require('multer')
 
@@ -18,9 +18,9 @@ const upload = multer({ storage: storage })
 
 Route
     .all('/', Auth.authInfo)
-    .get('/', ButtonController.getButton)
-    .get('/:buttonid', ButtonController.getButtonbyId)
-    .post('/', upload.single('music'), ButtonController.postButton)
-    .delete('/:buttonid', ButtonController.delButton)
+    .get('/', soundController.getSound)
+    .get('/:buttonid', soundController.getSoundbyId)
+    .post('/', upload.single('music'), soundController.postSound)
+    .delete('/:buttonid', soundController.delSound)
 
 module.exports = Route
