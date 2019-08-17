@@ -28,7 +28,7 @@ module.exports = {
 
     login: (email) => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT a.id_user, name, email, password, salt, b.role_name,created_at, updated_at FROM tb_users a  JOIN tb_role b ON a.id_role = b.id_role WHERE email = ? ORDER BY score DESC', email, (err, result) => {
+            connection.query('SELECT a.id_user, name, email, password, salt, b.role_name,created_at, updated_at FROM tb_users a  JOIN tb_role b ON a.id_role = b.id_role WHERE email = ?', email, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
